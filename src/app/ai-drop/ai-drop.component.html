@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="col-12">
+        <div class="row">
+
+            <form [formGroup]="aiForm" class="border p-3 mx-auto mt-3">
+                <h4 class="text-success text-center">Self Learning DropDown</h4>
+                <hr>
+                <div class="col-12">
+                    Enter Fruits Info
+                    <mat-form-field appearance="fill" class="ml-4">
+                        <mat-label>Enter Your info</mat-label>
+                        <input matInput type="text" formControlName="info" (focusout)="updateDropDown()">
+                    </mat-form-field>
+                </div>
+
+                <div class="col-12">
+                    Choose Best Answer
+                    <select value="" formControlName="answer" class="ml-4">
+                        <mat-label>Select best answer</mat-label>
+                        <option value="">----Please Select----</option>
+                        <optgroup *ngFor="let group of fruitsData" [label]="group.name">
+                            <option *ngFor="let fruits of group.relevant" [value]="fruits">
+                                {{fruits}}
+                            </option>
+                        </optgroup>
+                    </select>
+                </div>
+
+                <div class="col-12 text-center mt-4">
+                    <button mat-raised-button color="primary" (click)="submitForm()">Submit</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+</div>

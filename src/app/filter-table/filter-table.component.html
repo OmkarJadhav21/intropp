@@ -1,0 +1,89 @@
+<div class="p-5">
+
+
+    <h1>Column Filter With Excel Download</h1>
+    <div class="text-right">
+        <button mat-flat-button color="warn" class="mx-2" (click)="resetFilters()">Reset</button>
+        <button mat-flat-button color="primary" class="mx-2" (click)="downloadFile()">Download Excel</button>
+    </div>
+    <hr>
+    <div>
+        <mat-form-field *ngFor="let filter of filterSelectObj" class="ml-3">
+            <mat-label>Filter {{filter.name}}</mat-label>
+            <select matNativeControl name="{{filter.columnProp}}" [(ngModel)]="filter.modelValue"
+                (change)="filterChange(filter,$event)">
+                <option value="">-- Select {{filter.name}} --</option>
+                <option [value]="item" *ngFor="let item of filter.options">{{item}}</option>
+            </select>
+        </mat-form-field>
+    </div>
+
+    <table mat-table [dataSource]="dataSource">
+
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> id </th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> name </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="username">
+            <th mat-header-cell *matHeaderCellDef> username </th>
+            <td mat-cell *matCellDef="let element"> {{element.username}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef> email </th>
+            <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="phone">
+            <th mat-header-cell *matHeaderCellDef> phone </th>
+            <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="website">
+            <th mat-header-cell *matHeaderCellDef> website </th>
+            <td mat-cell *matCellDef="let element"> {{element.website}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef> status </th>
+            <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- <div class="container my-3">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="{{colVal}}" *ngFor="let colVal of displayedColumns">
+            <th mat-header-cell *matHeaderCellDef class="p-2"> {{colVal| uppercase}}
+                <div>
+                    <mat-form-field class="w-100">
+                        <input matInput class="form-field" [formControl]="createControls(colVal)" (onChange)="valueChange($event)" placeholder="Postion Filter">
+                    </mat-form-field>
+                </div>
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element[colVal]}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div> -->
